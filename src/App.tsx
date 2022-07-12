@@ -9,19 +9,24 @@ function App() {
     const [tasks, setTasks] = useState<Array<tasksPropsType>>([
         {id: v1(), title: "HTML&CSS ", isDone: true},
         {id: v1(), title: "JS ", isDone: true},
-        {id: v1(), title: "ReactJS ", isDone: false},
+        {id: v1(), title: "ReactJS ", isDone: true},
         {id: v1(), title: "redux ", isDone: false},
-        {id: v1(), title: "angular js ", isDone: true},
         {id: v1(), title: "Git ", isDone: false},
+        {id: v1(), title: "Rest API", isDone: false},
     ])
-
     console.log(tasks)
+
+
+    const onChangeIsDone = (newId: string, value: boolean) => {
+        setTasks(tasks.map(el => el.id === newId ? {...el, isDone: value} : el))
+        console.log(value)
+    }
 
     const removeTask = (taskID: string): void => {
         setTasks(tasks.filter((task: tasksPropsType) => task.id !== taskID))
     }
 
-    const addTask = (title:string) => {
+    const addTask = (title: string) => {
         const newTask: tasksPropsType = {
             id: v1(),
             title: title,
@@ -34,7 +39,6 @@ function App() {
     const [filter, setFilter] = useState<filterValuesType>("all")
 
     let tasksForRender;
-
     switch (filter) {
         case "completed":
             tasksForRender = tasks.filter(t => t.isDone === true);
@@ -53,6 +57,7 @@ function App() {
     return (
         <div className="App">
             <Todolist
+                onChangeIsDone={onChangeIsDone}
                 title={"What to learn"}
                 tasks={tasksForRender}
                 removeTasks={removeTask}
