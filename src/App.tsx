@@ -7,11 +7,11 @@ export type filterValuesType = "all" | "active" | "completed"
 
 function App() {
     const [tasks, setTasks] = useState<Array<tasksPropsType>>([
-        {id: v1(), title: "HTML&CSS ", isDone: true},
-        {id: v1(), title: "JS ", isDone: true},
-        {id: v1(), title: "ReactJS ", isDone: true},
-        {id: v1(), title: "redux ", isDone: false},
-        {id: v1(), title: "Git ", isDone: false},
+        {id: v1(), title: "HTML&CSS", isDone: true},
+        {id: v1(), title: "JS", isDone: true},
+        {id: v1(), title: "ReactJS", isDone: true},
+        {id: v1(), title: "redux", isDone: false},
+        {id: v1(), title: "Git", isDone: false},
         {id: v1(), title: "Rest API", isDone: false},
     ])
     console.log(tasks)
@@ -57,6 +57,7 @@ function App() {
     return (
         <div className="App">
             <Todolist
+                filter={filter}
                 onChangeIsDone={onChangeIsDone}
                 title={"What to learn"}
                 tasks={tasksForRender}
